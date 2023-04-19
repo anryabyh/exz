@@ -1,0 +1,895 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище exModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Doc_obr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="series" Type="varchar" MaxLength="255" />
+          <Property Name="number" Type="varchar" MaxLength="255" />
+          <Property Name="issue_date" Type="date" />
+          <Property Name="sotr_id" Type="int" />
+          <Property Name="uch_zav_id" Type="int" />
+          <Property Name="spesh_id" Type="int" />
+          <Property Name="kval_id" Type="int" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Dolzhnosti">
+          <Key>
+            <PropertyRef Name="id_dolzhnosti" />
+          </Key>
+          <Property Name="id_dolzhnosti" Type="int" Nullable="false" />
+          <Property Name="nazvanie" Type="varchar" MaxLength="255" />
+          <Property Name="opisanie" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Karta_ucheta">
+          <Key>
+            <PropertyRef Name="id_card" />
+          </Key>
+          <Property Name="id_card" Type="int" Nullable="false" />
+          <Property Name="seria" Type="varchar" MaxLength="255" />
+          <Property Name="nomer" Type="varchar" MaxLength="255" />
+          <Property Name="id_sotrudnika" Type="int" />
+          <Property Name="id_podrazdeleniya" Type="int" />
+          <Property Name="id_dolzhnosti" Type="int" />
+          <Property Name="id_stavki" Type="int" />
+          <Property Name="data_priema" Type="date" />
+          <Property Name="data_uvolneniya" Type="date" />
+        </EntityType>
+        <EntityType Name="Kvalifikaciya">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Podrazdelenie">
+          <Key>
+            <PropertyRef Name="id_podrazdeleniya" />
+          </Key>
+          <Property Name="id_podrazdeleniya" Type="int" Nullable="false" />
+          <Property Name="rukovoditel" Type="int" />
+          <Property Name="kolichestvo_sotrudnikov" Type="int" />
+        </EntityType>
+        <EntityType Name="Predpriyatie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="short_name" Type="varchar" MaxLength="255" />
+          <Property Name="city" Type="varchar" MaxLength="255" />
+          <Property Name="street" Type="varchar" MaxLength="255" />
+          <Property Name="house" Type="varchar" MaxLength="255" />
+          <Property Name="phone" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Price_kurs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="cost" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="255" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="patronymic" Type="varchar" MaxLength="255" />
+          <Property Name="birth_date" Type="date" />
+          <Property Name="doc_obr_id" Type="int" />
+          <Property Name="login" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="role" Type="int" />
+        </EntityType>
+        <EntityType Name="Specialnost">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Stavka">
+          <Key>
+            <PropertyRef Name="id_stavki" />
+          </Key>
+          <Property Name="id_stavki" Type="int" Nullable="false" />
+          <Property Name="naimeovanie" Type="varchar" MaxLength="255" />
+          <Property Name="zarplata" Type="int" />
+          <Property Name="procenty" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Uchebnoe_zavedenie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="street" Type="varchar" MaxLength="255" />
+          <Property Name="house" Type="varchar" MaxLength="255" />
+          <Property Name="activity" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Zayavka">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="creation_date" Type="date" />
+          <Property Name="sotr_id" Type="int" />
+          <Property Name="predpriyatie_id" Type="int" />
+          <Property Name="price_kurs_id" Type="int" />
+        </EntityType>
+        <Association Name="FK__Doc_obr__kval_id__3F466844">
+          <End Role="Kvalifikaciya" Type="Self.Kvalifikaciya" Multiplicity="0..1" />
+          <End Role="Doc_obr" Type="Self.Doc_obr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kvalifikaciya">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doc_obr">
+              <PropertyRef Name="kval_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Doc_obr__spesh_i__3E52440B">
+          <End Role="Specialnost" Type="Self.Specialnost" Multiplicity="0..1" />
+          <End Role="Doc_obr" Type="Self.Doc_obr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialnost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doc_obr">
+              <PropertyRef Name="spesh_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Doc_obr__uch_zav__3D5E1FD2">
+          <End Role="Uchebnoe_zavedenie" Type="Self.Uchebnoe_zavedenie" Multiplicity="0..1" />
+          <End Role="Doc_obr" Type="Self.Doc_obr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uchebnoe_zavedenie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doc_obr">
+              <PropertyRef Name="uch_zav_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Karta_uch__id_do__4D94879B">
+          <End Role="Dolzhnosti" Type="Self.Dolzhnosti" Multiplicity="0..1" />
+          <End Role="Karta_ucheta" Type="Self.Karta_ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dolzhnosti">
+              <PropertyRef Name="id_dolzhnosti" />
+            </Principal>
+            <Dependent Role="Karta_ucheta">
+              <PropertyRef Name="id_dolzhnosti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Karta_uch__id_po__4CA06362">
+          <End Role="Podrazdelenie" Type="Self.Podrazdelenie" Multiplicity="0..1" />
+          <End Role="Karta_ucheta" Type="Self.Karta_ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Podrazdelenie">
+              <PropertyRef Name="id_podrazdeleniya" />
+            </Principal>
+            <Dependent Role="Karta_ucheta">
+              <PropertyRef Name="id_podrazdeleniya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Karta_uch__id_so__4BAC3F29">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Karta_ucheta" Type="Self.Karta_ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Karta_ucheta">
+              <PropertyRef Name="id_sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Karta_uch__id_st__4E88ABD4">
+          <End Role="Stavka" Type="Self.Stavka" Multiplicity="0..1" />
+          <End Role="Karta_ucheta" Type="Self.Karta_ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stavka">
+              <PropertyRef Name="id_stavki" />
+            </Principal>
+            <Dependent Role="Karta_ucheta">
+              <PropertyRef Name="id_stavki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Podrazdel__rukov__44FF419A">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Podrazdelenie" Type="Self.Podrazdelenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Podrazdelenie">
+              <PropertyRef Name="rukovoditel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__doc_o__4222D4EF">
+          <End Role="Doc_obr" Type="Self.Doc_obr" Multiplicity="0..1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doc_obr">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="doc_obr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zayavka__predpri__5629CD9C">
+          <End Role="Predpriyatie" Type="Self.Predpriyatie" Multiplicity="0..1" />
+          <End Role="Zayavka" Type="Self.Zayavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predpriyatie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zayavka">
+              <PropertyRef Name="predpriyatie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zayavka__price_k__571DF1D5">
+          <End Role="Price_kurs" Type="Self.Price_kurs" Multiplicity="0..1" />
+          <End Role="Zayavka" Type="Self.Zayavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price_kurs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zayavka">
+              <PropertyRef Name="price_kurs_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zayavka__sotr_id__5535A963">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Zayavka" Type="Self.Zayavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zayavka">
+              <PropertyRef Name="sotr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище exModelContainer">
+          <EntitySet Name="Doc_obr" EntityType="Self.Doc_obr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dolzhnosti" EntityType="Self.Dolzhnosti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Karta_ucheta" EntityType="Self.Karta_ucheta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kvalifikaciya" EntityType="Self.Kvalifikaciya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Podrazdelenie" EntityType="Self.Podrazdelenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Predpriyatie" EntityType="Self.Predpriyatie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price_kurs" EntityType="Self.Price_kurs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialnost" EntityType="Self.Specialnost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stavka" EntityType="Self.Stavka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uchebnoe_zavedenie" EntityType="Self.Uchebnoe_zavedenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zayavka" EntityType="Self.Zayavka" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Doc_obr__kval_id__3F466844" Association="Self.FK__Doc_obr__kval_id__3F466844">
+            <End Role="Kvalifikaciya" EntitySet="Kvalifikaciya" />
+            <End Role="Doc_obr" EntitySet="Doc_obr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Doc_obr__spesh_i__3E52440B" Association="Self.FK__Doc_obr__spesh_i__3E52440B">
+            <End Role="Specialnost" EntitySet="Specialnost" />
+            <End Role="Doc_obr" EntitySet="Doc_obr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Doc_obr__uch_zav__3D5E1FD2" Association="Self.FK__Doc_obr__uch_zav__3D5E1FD2">
+            <End Role="Uchebnoe_zavedenie" EntitySet="Uchebnoe_zavedenie" />
+            <End Role="Doc_obr" EntitySet="Doc_obr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Karta_uch__id_do__4D94879B" Association="Self.FK__Karta_uch__id_do__4D94879B">
+            <End Role="Dolzhnosti" EntitySet="Dolzhnosti" />
+            <End Role="Karta_ucheta" EntitySet="Karta_ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Karta_uch__id_po__4CA06362" Association="Self.FK__Karta_uch__id_po__4CA06362">
+            <End Role="Podrazdelenie" EntitySet="Podrazdelenie" />
+            <End Role="Karta_ucheta" EntitySet="Karta_ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Karta_uch__id_so__4BAC3F29" Association="Self.FK__Karta_uch__id_so__4BAC3F29">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Karta_ucheta" EntitySet="Karta_ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Karta_uch__id_st__4E88ABD4" Association="Self.FK__Karta_uch__id_st__4E88ABD4">
+            <End Role="Stavka" EntitySet="Stavka" />
+            <End Role="Karta_ucheta" EntitySet="Karta_ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Podrazdel__rukov__44FF419A" Association="Self.FK__Podrazdel__rukov__44FF419A">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Podrazdelenie" EntitySet="Podrazdelenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__doc_o__4222D4EF" Association="Self.FK__Sotrudnik__doc_o__4222D4EF">
+            <End Role="Doc_obr" EntitySet="Doc_obr" />
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zayavka__predpri__5629CD9C" Association="Self.FK__Zayavka__predpri__5629CD9C">
+            <End Role="Predpriyatie" EntitySet="Predpriyatie" />
+            <End Role="Zayavka" EntitySet="Zayavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zayavka__price_k__571DF1D5" Association="Self.FK__Zayavka__price_k__571DF1D5">
+            <End Role="Price_kurs" EntitySet="Price_kurs" />
+            <End Role="Zayavka" EntitySet="Zayavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zayavka__sotr_id__5535A963" Association="Self.FK__Zayavka__sotr_id__5535A963">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Zayavka" EntitySet="Zayavka" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="exModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Doc_obr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="series" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="issue_date" Type="DateTime" Precision="0" />
+          <Property Name="sotr_id" Type="Int32" />
+          <Property Name="uch_zav_id" Type="Int32" />
+          <Property Name="spesh_id" Type="Int32" />
+          <Property Name="kval_id" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kvalifikaciya" Relationship="Self.FK__Doc_obr__kval_id__3F466844" FromRole="Doc_obr" ToRole="Kvalifikaciya" />
+          <NavigationProperty Name="Specialnost" Relationship="Self.FK__Doc_obr__spesh_i__3E52440B" FromRole="Doc_obr" ToRole="Specialnost" />
+          <NavigationProperty Name="Uchebnoe_zavedenie" Relationship="Self.FK__Doc_obr__uch_zav__3D5E1FD2" FromRole="Doc_obr" ToRole="Uchebnoe_zavedenie" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK__Sotrudnik__doc_o__4222D4EF" FromRole="Doc_obr" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Dolzhnosti">
+          <Key>
+            <PropertyRef Name="id_dolzhnosti" />
+          </Key>
+          <Property Name="id_dolzhnosti" Type="Int32" Nullable="false" />
+          <Property Name="nazvanie" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="opisanie" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Karta_ucheta" Relationship="Self.FK__Karta_uch__id_do__4D94879B" FromRole="Dolzhnosti" ToRole="Karta_ucheta" />
+        </EntityType>
+        <EntityType Name="Karta_ucheta">
+          <Key>
+            <PropertyRef Name="id_card" />
+          </Key>
+          <Property Name="id_card" Type="Int32" Nullable="false" />
+          <Property Name="seria" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nomer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="id_sotrudnika" Type="Int32" />
+          <Property Name="id_podrazdeleniya" Type="Int32" />
+          <Property Name="id_dolzhnosti" Type="Int32" />
+          <Property Name="id_stavki" Type="Int32" />
+          <Property Name="data_priema" Type="DateTime" Precision="0" />
+          <Property Name="data_uvolneniya" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Dolzhnosti" Relationship="Self.FK__Karta_uch__id_do__4D94879B" FromRole="Karta_ucheta" ToRole="Dolzhnosti" />
+          <NavigationProperty Name="Podrazdelenie" Relationship="Self.FK__Karta_uch__id_po__4CA06362" FromRole="Karta_ucheta" ToRole="Podrazdelenie" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK__Karta_uch__id_so__4BAC3F29" FromRole="Karta_ucheta" ToRole="Sotrudnik" />
+          <NavigationProperty Name="Stavka" Relationship="Self.FK__Karta_uch__id_st__4E88ABD4" FromRole="Karta_ucheta" ToRole="Stavka" />
+        </EntityType>
+        <EntityType Name="Kvalifikaciya">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Doc_obr" Relationship="Self.FK__Doc_obr__kval_id__3F466844" FromRole="Kvalifikaciya" ToRole="Doc_obr" />
+        </EntityType>
+        <EntityType Name="Podrazdelenie">
+          <Key>
+            <PropertyRef Name="id_podrazdeleniya" />
+          </Key>
+          <Property Name="id_podrazdeleniya" Type="Int32" Nullable="false" />
+          <Property Name="rukovoditel" Type="Int32" />
+          <Property Name="kolichestvo_sotrudnikov" Type="Int32" />
+          <NavigationProperty Name="Karta_ucheta" Relationship="Self.FK__Karta_uch__id_po__4CA06362" FromRole="Podrazdelenie" ToRole="Karta_ucheta" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK__Podrazdel__rukov__44FF419A" FromRole="Podrazdelenie" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Predpriyatie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="short_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="street" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="house" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Zayavka" Relationship="Self.FK__Zayavka__predpri__5629CD9C" FromRole="Predpriyatie" ToRole="Zayavka" />
+        </EntityType>
+        <EntityType Name="Price_kurs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cost" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Zayavka" Relationship="Self.FK__Zayavka__price_k__571DF1D5" FromRole="Price_kurs" ToRole="Zayavka" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="patronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="birth_date" Type="DateTime" Precision="0" />
+          <Property Name="doc_obr_id" Type="Int32" />
+          <Property Name="login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="Int32" />
+          <NavigationProperty Name="Doc_obr" Relationship="Self.FK__Sotrudnik__doc_o__4222D4EF" FromRole="Sotrudnik" ToRole="Doc_obr" />
+          <NavigationProperty Name="Karta_ucheta" Relationship="Self.FK__Karta_uch__id_so__4BAC3F29" FromRole="Sotrudnik" ToRole="Karta_ucheta" />
+          <NavigationProperty Name="Podrazdelenie" Relationship="Self.FK__Podrazdel__rukov__44FF419A" FromRole="Sotrudnik" ToRole="Podrazdelenie" />
+          <NavigationProperty Name="Zayavka" Relationship="Self.FK__Zayavka__sotr_id__5535A963" FromRole="Sotrudnik" ToRole="Zayavka" />
+        </EntityType>
+        <EntityType Name="Specialnost">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Doc_obr" Relationship="Self.FK__Doc_obr__spesh_i__3E52440B" FromRole="Specialnost" ToRole="Doc_obr" />
+        </EntityType>
+        <EntityType Name="Stavka">
+          <Key>
+            <PropertyRef Name="id_stavki" />
+          </Key>
+          <Property Name="id_stavki" Type="Int32" Nullable="false" />
+          <Property Name="naimeovanie" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="zarplata" Type="Int32" />
+          <Property Name="procenty" Type="Int32" />
+          <NavigationProperty Name="Karta_ucheta" Relationship="Self.FK__Karta_uch__id_st__4E88ABD4" FromRole="Stavka" ToRole="Karta_ucheta" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Uchebnoe_zavedenie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="street" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="house" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="activity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Doc_obr" Relationship="Self.FK__Doc_obr__uch_zav__3D5E1FD2" FromRole="Uchebnoe_zavedenie" ToRole="Doc_obr" />
+        </EntityType>
+        <EntityType Name="Zayavka">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="0" />
+          <Property Name="sotr_id" Type="Int32" />
+          <Property Name="predpriyatie_id" Type="Int32" />
+          <Property Name="price_kurs_id" Type="Int32" />
+          <NavigationProperty Name="Predpriyatie" Relationship="Self.FK__Zayavka__predpri__5629CD9C" FromRole="Zayavka" ToRole="Predpriyatie" />
+          <NavigationProperty Name="Price_kurs" Relationship="Self.FK__Zayavka__price_k__571DF1D5" FromRole="Zayavka" ToRole="Price_kurs" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK__Zayavka__sotr_id__5535A963" FromRole="Zayavka" ToRole="Sotrudnik" />
+        </EntityType>
+        <Association Name="FK__Doc_obr__kval_id__3F466844">
+          <End Role="Kvalifikaciya" Type="Self.Kvalifikaciya" Multiplicity="0..1" />
+          <End Role="Doc_obr" Type="Self.Doc_obr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kvalifikaciya">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doc_obr">
+              <PropertyRef Name="kval_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Doc_obr__spesh_i__3E52440B">
+          <End Role="Specialnost" Type="Self.Specialnost" Multiplicity="0..1" />
+          <End Role="Doc_obr" Type="Self.Doc_obr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialnost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doc_obr">
+              <PropertyRef Name="spesh_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Doc_obr__uch_zav__3D5E1FD2">
+          <End Role="Uchebnoe_zavedenie" Type="Self.Uchebnoe_zavedenie" Multiplicity="0..1" />
+          <End Role="Doc_obr" Type="Self.Doc_obr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uchebnoe_zavedenie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doc_obr">
+              <PropertyRef Name="uch_zav_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__doc_o__4222D4EF">
+          <End Role="Doc_obr" Type="Self.Doc_obr" Multiplicity="0..1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doc_obr">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="doc_obr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Karta_uch__id_do__4D94879B">
+          <End Role="Dolzhnosti" Type="Self.Dolzhnosti" Multiplicity="0..1" />
+          <End Role="Karta_ucheta" Type="Self.Karta_ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dolzhnosti">
+              <PropertyRef Name="id_dolzhnosti" />
+            </Principal>
+            <Dependent Role="Karta_ucheta">
+              <PropertyRef Name="id_dolzhnosti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Karta_uch__id_po__4CA06362">
+          <End Role="Podrazdelenie" Type="Self.Podrazdelenie" Multiplicity="0..1" />
+          <End Role="Karta_ucheta" Type="Self.Karta_ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Podrazdelenie">
+              <PropertyRef Name="id_podrazdeleniya" />
+            </Principal>
+            <Dependent Role="Karta_ucheta">
+              <PropertyRef Name="id_podrazdeleniya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Karta_uch__id_so__4BAC3F29">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Karta_ucheta" Type="Self.Karta_ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Karta_ucheta">
+              <PropertyRef Name="id_sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Karta_uch__id_st__4E88ABD4">
+          <End Role="Stavka" Type="Self.Stavka" Multiplicity="0..1" />
+          <End Role="Karta_ucheta" Type="Self.Karta_ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stavka">
+              <PropertyRef Name="id_stavki" />
+            </Principal>
+            <Dependent Role="Karta_ucheta">
+              <PropertyRef Name="id_stavki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Podrazdel__rukov__44FF419A">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Podrazdelenie" Type="Self.Podrazdelenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Podrazdelenie">
+              <PropertyRef Name="rukovoditel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zayavka__predpri__5629CD9C">
+          <End Role="Predpriyatie" Type="Self.Predpriyatie" Multiplicity="0..1" />
+          <End Role="Zayavka" Type="Self.Zayavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predpriyatie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zayavka">
+              <PropertyRef Name="predpriyatie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zayavka__price_k__571DF1D5">
+          <End Role="Price_kurs" Type="Self.Price_kurs" Multiplicity="0..1" />
+          <End Role="Zayavka" Type="Self.Zayavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price_kurs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zayavka">
+              <PropertyRef Name="price_kurs_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zayavka__sotr_id__5535A963">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Zayavka" Type="Self.Zayavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zayavka">
+              <PropertyRef Name="sotr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="exEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Doc_obr" EntityType="Self.Doc_obr" />
+          <EntitySet Name="Dolzhnosti" EntityType="Self.Dolzhnosti" />
+          <EntitySet Name="Karta_ucheta" EntityType="Self.Karta_ucheta" />
+          <EntitySet Name="Kvalifikaciya" EntityType="Self.Kvalifikaciya" />
+          <EntitySet Name="Podrazdelenie" EntityType="Self.Podrazdelenie" />
+          <EntitySet Name="Predpriyatie" EntityType="Self.Predpriyatie" />
+          <EntitySet Name="Price_kurs" EntityType="Self.Price_kurs" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" />
+          <EntitySet Name="Specialnost" EntityType="Self.Specialnost" />
+          <EntitySet Name="Stavka" EntityType="Self.Stavka" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Uchebnoe_zavedenie" EntityType="Self.Uchebnoe_zavedenie" />
+          <EntitySet Name="Zayavka" EntityType="Self.Zayavka" />
+          <AssociationSet Name="FK__Doc_obr__kval_id__3F466844" Association="Self.FK__Doc_obr__kval_id__3F466844">
+            <End Role="Kvalifikaciya" EntitySet="Kvalifikaciya" />
+            <End Role="Doc_obr" EntitySet="Doc_obr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Doc_obr__spesh_i__3E52440B" Association="Self.FK__Doc_obr__spesh_i__3E52440B">
+            <End Role="Specialnost" EntitySet="Specialnost" />
+            <End Role="Doc_obr" EntitySet="Doc_obr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Doc_obr__uch_zav__3D5E1FD2" Association="Self.FK__Doc_obr__uch_zav__3D5E1FD2">
+            <End Role="Uchebnoe_zavedenie" EntitySet="Uchebnoe_zavedenie" />
+            <End Role="Doc_obr" EntitySet="Doc_obr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__doc_o__4222D4EF" Association="Self.FK__Sotrudnik__doc_o__4222D4EF">
+            <End Role="Doc_obr" EntitySet="Doc_obr" />
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Karta_uch__id_do__4D94879B" Association="Self.FK__Karta_uch__id_do__4D94879B">
+            <End Role="Dolzhnosti" EntitySet="Dolzhnosti" />
+            <End Role="Karta_ucheta" EntitySet="Karta_ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Karta_uch__id_po__4CA06362" Association="Self.FK__Karta_uch__id_po__4CA06362">
+            <End Role="Podrazdelenie" EntitySet="Podrazdelenie" />
+            <End Role="Karta_ucheta" EntitySet="Karta_ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Karta_uch__id_so__4BAC3F29" Association="Self.FK__Karta_uch__id_so__4BAC3F29">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Karta_ucheta" EntitySet="Karta_ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Karta_uch__id_st__4E88ABD4" Association="Self.FK__Karta_uch__id_st__4E88ABD4">
+            <End Role="Stavka" EntitySet="Stavka" />
+            <End Role="Karta_ucheta" EntitySet="Karta_ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Podrazdel__rukov__44FF419A" Association="Self.FK__Podrazdel__rukov__44FF419A">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Podrazdelenie" EntitySet="Podrazdelenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zayavka__predpri__5629CD9C" Association="Self.FK__Zayavka__predpri__5629CD9C">
+            <End Role="Predpriyatie" EntitySet="Predpriyatie" />
+            <End Role="Zayavka" EntitySet="Zayavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zayavka__price_k__571DF1D5" Association="Self.FK__Zayavka__price_k__571DF1D5">
+            <End Role="Price_kurs" EntitySet="Price_kurs" />
+            <End Role="Zayavka" EntitySet="Zayavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zayavka__sotr_id__5535A963" Association="Self.FK__Zayavka__sotr_id__5535A963">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Zayavka" EntitySet="Zayavka" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище exModelContainer" CdmEntityContainer="exEntities">
+          <EntitySetMapping Name="Doc_obr">
+            <EntityTypeMapping TypeName="exModel.Doc_obr">
+              <MappingFragment StoreEntitySet="Doc_obr">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="series" ColumnName="series" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+                <ScalarProperty Name="sotr_id" ColumnName="sotr_id" />
+                <ScalarProperty Name="uch_zav_id" ColumnName="uch_zav_id" />
+                <ScalarProperty Name="spesh_id" ColumnName="spesh_id" />
+                <ScalarProperty Name="kval_id" ColumnName="kval_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dolzhnosti">
+            <EntityTypeMapping TypeName="exModel.Dolzhnosti">
+              <MappingFragment StoreEntitySet="Dolzhnosti">
+                <ScalarProperty Name="id_dolzhnosti" ColumnName="id_dolzhnosti" />
+                <ScalarProperty Name="nazvanie" ColumnName="nazvanie" />
+                <ScalarProperty Name="opisanie" ColumnName="opisanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Karta_ucheta">
+            <EntityTypeMapping TypeName="exModel.Karta_ucheta">
+              <MappingFragment StoreEntitySet="Karta_ucheta">
+                <ScalarProperty Name="id_card" ColumnName="id_card" />
+                <ScalarProperty Name="seria" ColumnName="seria" />
+                <ScalarProperty Name="nomer" ColumnName="nomer" />
+                <ScalarProperty Name="id_sotrudnika" ColumnName="id_sotrudnika" />
+                <ScalarProperty Name="id_podrazdeleniya" ColumnName="id_podrazdeleniya" />
+                <ScalarProperty Name="id_dolzhnosti" ColumnName="id_dolzhnosti" />
+                <ScalarProperty Name="id_stavki" ColumnName="id_stavki" />
+                <ScalarProperty Name="data_priema" ColumnName="data_priema" />
+                <ScalarProperty Name="data_uvolneniya" ColumnName="data_uvolneniya" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kvalifikaciya">
+            <EntityTypeMapping TypeName="exModel.Kvalifikaciya">
+              <MappingFragment StoreEntitySet="Kvalifikaciya">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Podrazdelenie">
+            <EntityTypeMapping TypeName="exModel.Podrazdelenie">
+              <MappingFragment StoreEntitySet="Podrazdelenie">
+                <ScalarProperty Name="id_podrazdeleniya" ColumnName="id_podrazdeleniya" />
+                <ScalarProperty Name="rukovoditel" ColumnName="rukovoditel" />
+                <ScalarProperty Name="kolichestvo_sotrudnikov" ColumnName="kolichestvo_sotrudnikov" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Predpriyatie">
+            <EntityTypeMapping TypeName="exModel.Predpriyatie">
+              <MappingFragment StoreEntitySet="Predpriyatie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="short_name" ColumnName="short_name" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="house" ColumnName="house" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price_kurs">
+            <EntityTypeMapping TypeName="exModel.Price_kurs">
+              <MappingFragment StoreEntitySet="Price_kurs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudnik">
+            <EntityTypeMapping TypeName="exModel.Sotrudnik">
+              <MappingFragment StoreEntitySet="Sotrudnik">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="doc_obr_id" ColumnName="doc_obr_id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialnost">
+            <EntityTypeMapping TypeName="exModel.Specialnost">
+              <MappingFragment StoreEntitySet="Specialnost">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stavka">
+            <EntityTypeMapping TypeName="exModel.Stavka">
+              <MappingFragment StoreEntitySet="Stavka">
+                <ScalarProperty Name="id_stavki" ColumnName="id_stavki" />
+                <ScalarProperty Name="naimeovanie" ColumnName="naimeovanie" />
+                <ScalarProperty Name="zarplata" ColumnName="zarplata" />
+                <ScalarProperty Name="procenty" ColumnName="procenty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="exModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uchebnoe_zavedenie">
+            <EntityTypeMapping TypeName="exModel.Uchebnoe_zavedenie">
+              <MappingFragment StoreEntitySet="Uchebnoe_zavedenie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="house" ColumnName="house" />
+                <ScalarProperty Name="activity" ColumnName="activity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zayavka">
+            <EntityTypeMapping TypeName="exModel.Zayavka">
+              <MappingFragment StoreEntitySet="Zayavka">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="sotr_id" ColumnName="sotr_id" />
+                <ScalarProperty Name="predpriyatie_id" ColumnName="predpriyatie_id" />
+                <ScalarProperty Name="price_kurs_id" ColumnName="price_kurs_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
